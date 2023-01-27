@@ -77,10 +77,10 @@ contract NftMarketplace {
             revert NftMarketplace__PriceNotMet(nftAddress, tokenId, listedItem.price);
         }
         s_proceeds[listedItem.seller] = s_proceeds[listedItem.seller] + msg.value;
-        delete (s_listings[nftAddress][tokenId]);
+        delete (s_listing[nftAddress][tokenId]);
         IERC721(nftAddress).safeTransferFrom(listedItem.seller, msg.sender, tokenId); 
 
-        emit ItemBought(msg.sender, nftAddress, tokenId, price);
+        emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 
 }
